@@ -62,10 +62,17 @@ const NoteState = (props) => {
         'Content-Type': 'application/json',
         "auth-token": localStorage.getItem('token')
       },
+      // When sending data to a web server, the data has to be a string.
+      // Convert a JavaScript object into a string with JSON.stringify().
+
       body: JSON.stringify({title, description, tag})
     });
     const json = await response.json(); 
     console.log(json)
+
+    // When receiving data from a web server, the data is always a string.
+    // parse the data with JSON.parse(), and the data becomes a JavaScript object
+
      let newNotes = JSON.parse(JSON.stringify(notes))
     // Logic to edit in client
     for (let index = 0; index < newNotes.length; index++) {
